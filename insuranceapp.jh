@@ -1,0 +1,49 @@
+
+entity InsuranceObject{
+	identifier1 String
+    identifier2 String
+    identifier3 String
+}
+
+entity InsuranceInstance{
+	instanceDate Instant
+}
+
+entity InsuranceSpecification{
+	code String
+    descriptionAr String
+    descriptionEn String
+}
+
+entity InsuranceInstanceDetails{
+	image ImageBlob
+    comments String
+    status InstanceDetailsStatus
+}
+
+enum InstanceDetailsStatus{
+	Excellent,
+    VeryGood,
+    Good,
+    Fair,
+    TotalLoss
+}
+relationship OneToMany {
+	InsuranceObject{instance} to InsuranceInstance
+}
+relationship OneToMany {
+	InsuranceInstance{details} to InsuranceInstanceDetails
+}
+relationship ManyToOne {
+	InsuranceInstanceDetails{specification} to InsuranceSpecification
+}
+relationship OneToOne {
+	InsuranceInstance{user} to User
+}
+paginate * with pagination
+
+service all with serviceClass
+
+dto all with mapstruct
+
+
