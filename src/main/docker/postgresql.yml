@@ -1,0 +1,11 @@
+version: '2'
+services:
+  insuranceapplication-postgresql:
+    image: postgres:12.1
+    # volumes:
+    #     - ~/volumes/jhipster/InsuranceApplication/postgresql/:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=InsuranceApplication
+      - POSTGRES_PASSWORD=
+    ports:
+      - 5432:5432
