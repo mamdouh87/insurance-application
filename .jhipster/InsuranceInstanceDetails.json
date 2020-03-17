@@ -1,0 +1,46 @@
+{
+    "name": "InsuranceInstanceDetails",
+    "fields": [
+        {
+            "fieldName": "image",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "comments",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "InstanceDetailsStatus",
+            "fieldValues": "Excellent,VeryGood,Good,Fair,TotalLoss"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "insuranceSpecification",
+            "otherEntityRelationshipName": "insuranceInstanceDetails",
+            "relationshipName": "specification",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "insuranceInstance",
+            "otherEntityRelationshipName": "details",
+            "relationshipName": "insuranceInstance",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200317125800",
+    "entityTableName": "insurance_instance_details",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

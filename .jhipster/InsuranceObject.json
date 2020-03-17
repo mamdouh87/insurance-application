@@ -1,0 +1,36 @@
+{
+    "name": "InsuranceObject",
+    "fields": [
+        {
+            "fieldName": "identifier1",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "identifier2",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "identifier3",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "insuranceInstance",
+            "otherEntityRelationshipName": "insuranceObject",
+            "relationshipName": "instance"
+        }
+    ],
+    "changelogDate": "20200317125500",
+    "entityTableName": "insurance_object",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

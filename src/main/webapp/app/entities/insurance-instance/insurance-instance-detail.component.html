@@ -1,0 +1,40 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="insuranceInstance">
+            <h2><span jhiTranslate="insuranceApplicationApp.insuranceInstance.detail.title">Insurance Instance</span> {{ insuranceInstance.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="insuranceApplicationApp.insuranceInstance.instanceDate">Instance Date</span></dt>
+                <dd>
+                    <span>{{ insuranceInstance.instanceDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="insuranceApplicationApp.insuranceInstance.user">User</span></dt>
+                <dd>
+                    {{ insuranceInstance.user?.id }}
+                </dd>
+                <dt><span jhiTranslate="insuranceApplicationApp.insuranceInstance.insuranceObject">Insurance Object</span></dt>
+                <dd>
+                    <div *ngIf="insuranceInstance.insuranceObject">
+                        <a [routerLink]="['/insurance-object', insuranceInstance.insuranceObject?.id, 'view']">{{ insuranceInstance.insuranceObject?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/insurance-instance', insuranceInstance.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

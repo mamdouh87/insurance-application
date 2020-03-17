@@ -1,0 +1,43 @@
+{
+    "name": "InsuranceInstance",
+    "fields": [
+        {
+            "fieldName": "instanceDate",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "insuranceInstance",
+            "relationshipName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "insuranceInstanceDetails",
+            "otherEntityRelationshipName": "insuranceInstance",
+            "relationshipName": "details"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "insuranceObject",
+            "otherEntityRelationshipName": "instance",
+            "relationshipName": "insuranceObject",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200317125600",
+    "entityTableName": "insurance_instance",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,25 @@
+{
+  "insuranceApplicationApp": {
+    "insuranceObject": {
+      "home": {
+        "title": "Insurance Objects",
+        "createLabel": "Create a new Insurance Object",
+        "createOrEditLabel": "Create or edit a Insurance Object",
+        "notFound": "No Insurance Objects found"
+      },
+      "created": "A new Insurance Object is created with identifier {{ param }}",
+      "updated": "A Insurance Object is updated with identifier {{ param }}",
+      "deleted": "A Insurance Object is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Insurance Object {{ id }}?"
+      },
+      "detail": {
+        "title": "Insurance Object"
+      },
+      "identifier1": "Identifier 1",
+      "identifier2": "Identifier 2",
+      "identifier3": "Identifier 3",
+      "instance": "Instance"
+    }
+  }
+}

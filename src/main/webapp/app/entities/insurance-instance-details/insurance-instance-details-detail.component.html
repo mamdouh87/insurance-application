@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="insuranceInstanceDetails">
+            <h2><span jhiTranslate="insuranceApplicationApp.insuranceInstanceDetails.detail.title">Insurance Instance Details</span> {{ insuranceInstanceDetails.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="insuranceApplicationApp.insuranceInstanceDetails.image">Image</span></dt>
+                <dd>
+                    <div *ngIf="insuranceInstanceDetails.image">
+                        <a (click)="openFile(insuranceInstanceDetails?.imageContentType!, insuranceInstanceDetails?.image)">
+                            <img [src]="'data:' + insuranceInstanceDetails.imageContentType + ';base64,' + insuranceInstanceDetails.image" style="max-width: 100%;" alt="insuranceInstanceDetails image"/>
+                        </a>
+                        {{ insuranceInstanceDetails.imageContentType }}, {{ byteSize(insuranceInstanceDetails.image) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="insuranceApplicationApp.insuranceInstanceDetails.comments">Comments</span></dt>
+                <dd>
+                    <span>{{ insuranceInstanceDetails.comments }}</span>
+                </dd>
+                <dt><span jhiTranslate="insuranceApplicationApp.insuranceInstanceDetails.status">Status</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'insuranceApplicationApp.InstanceDetailsStatus.' + insuranceInstanceDetails.status }}">{{ insuranceInstanceDetails.status }}</span>
+                </dd>
+                <dt><span jhiTranslate="insuranceApplicationApp.insuranceInstanceDetails.specification">Specification</span></dt>
+                <dd>
+                    <div *ngIf="insuranceInstanceDetails.specification">
+                        <a [routerLink]="['/insurance-specification', insuranceInstanceDetails.specification?.id, 'view']">{{ insuranceInstanceDetails.specification?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="insuranceApplicationApp.insuranceInstanceDetails.insuranceInstance">Insurance Instance</span></dt>
+                <dd>
+                    <div *ngIf="insuranceInstanceDetails.insuranceInstance">
+                        <a [routerLink]="['/insurance-instance', insuranceInstanceDetails.insuranceInstance?.id, 'view']">{{ insuranceInstanceDetails.insuranceInstance?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/insurance-instance-details', insuranceInstanceDetails.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
