@@ -1,0 +1,26 @@
+{
+  "insuranceApplicationApp": {
+    "insuranceInstanceDetails": {
+      "home": {
+        "title": "Insurance Instance Details",
+        "createLabel": "Create a new Insurance Instance Details",
+        "createOrEditLabel": "Create or edit a Insurance Instance Details",
+        "notFound": "No Insurance Instance Details found"
+      },
+      "created": "A new Insurance Instance Details is created with identifier {{ param }}",
+      "updated": "A Insurance Instance Details is updated with identifier {{ param }}",
+      "deleted": "A Insurance Instance Details is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Insurance Instance Details {{ id }}?"
+      },
+      "detail": {
+        "title": "Insurance Instance Details"
+      },
+      "image": "Image",
+      "comments": "Comments",
+      "status": "Status",
+      "specification": "Specification",
+      "insuranceInstance": "Insurance Instance"
+    }
+  }
+}

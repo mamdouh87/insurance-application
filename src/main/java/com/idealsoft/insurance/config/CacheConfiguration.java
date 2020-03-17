@@ -40,6 +40,12 @@ public class CacheConfiguration {
             createCache(cm, com.idealsoft.insurance.domain.User.class.getName());
             createCache(cm, com.idealsoft.insurance.domain.Authority.class.getName());
             createCache(cm, com.idealsoft.insurance.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.idealsoft.insurance.domain.InsuranceObject.class.getName());
+            createCache(cm, com.idealsoft.insurance.domain.InsuranceObject.class.getName() + ".instances");
+            createCache(cm, com.idealsoft.insurance.domain.InsuranceInstance.class.getName());
+            createCache(cm, com.idealsoft.insurance.domain.InsuranceInstance.class.getName() + ".details");
+            createCache(cm, com.idealsoft.insurance.domain.InsuranceSpecification.class.getName());
+            createCache(cm, com.idealsoft.insurance.domain.InsuranceInstanceDetails.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

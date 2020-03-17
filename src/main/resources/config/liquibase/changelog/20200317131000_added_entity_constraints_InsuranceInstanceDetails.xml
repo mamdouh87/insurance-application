@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <!--
+        Added the constraints for entity InsuranceInstanceDetails.
+    -->
+    <changeSet id="20200317131000-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="specification_id"
+                                 baseTableName="insurance_instance_details"
+                                 constraintName="fk_insurance_instance_details_specification_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="insurance_specification"/>
+
+        <addForeignKeyConstraint baseColumnNames="insurance_instance_id"
+                                 baseTableName="insurance_instance_details"
+                                 constraintName="fk_insurance_instance_details_insurance_instance_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="insurance_instance"/>
+
+    </changeSet>
+</databaseChangeLog>
