@@ -1,0 +1,24 @@
+{
+  "insuranceApplicationApp": {
+    "insuranceSpecification": {
+      "home": {
+        "title": "Insurance Specifications",
+        "createLabel": "Create a new Insurance Specification",
+        "createOrEditLabel": "Create or edit a Insurance Specification",
+        "notFound": "No Insurance Specifications found"
+      },
+      "created": "A new Insurance Specification is created with identifier {{ param }}",
+      "updated": "A Insurance Specification is updated with identifier {{ param }}",
+      "deleted": "A Insurance Specification is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Insurance Specification {{ id }}?"
+      },
+      "detail": {
+        "title": "Insurance Specification"
+      },
+      "code": "Code",
+      "descriptionAr": "Description Ar",
+      "descriptionEn": "Description En"
+    }
+  }
+}

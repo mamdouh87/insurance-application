@@ -1,0 +1,12 @@
+{
+  "insuranceApplicationApp": {
+    "InstanceDetailsStatus": {
+      "null": "",
+      "Excellent": "Excellent",
+      "VeryGood": "VeryGood",
+      "Good": "Good",
+      "Fair": "Fair",
+      "TotalLoss": "TotalLoss"
+    }
+  }
+}

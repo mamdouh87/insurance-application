@@ -1,0 +1,92 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="insuranceApplicationApp.insuranceInstanceDetails.home.title">Insurance Instance Details</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-insurance-instance-details" [routerLink]="['/insurance-instance-details/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="insuranceApplicationApp.insuranceInstanceDetails.home.createLabel">
+            Create a new Insurance Instance Details
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="insuranceInstanceDetails?.length === 0">
+        <span jhiTranslate="insuranceApplicationApp.insuranceInstanceDetails.home.notFound">No insuranceInstanceDetails found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="insuranceInstanceDetails?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="image"><span jhiTranslate="insuranceApplicationApp.insuranceInstanceDetails.image">Image</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="comments"><span jhiTranslate="insuranceApplicationApp.insuranceInstanceDetails.comments">Comments</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="status"><span jhiTranslate="insuranceApplicationApp.insuranceInstanceDetails.status">Status</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="specificationId"><span jhiTranslate="insuranceApplicationApp.insuranceInstanceDetails.specification">Specification</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="insuranceInstanceId"><span jhiTranslate="insuranceApplicationApp.insuranceInstanceDetails.insuranceInstance">Insurance Instance</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let insuranceInstanceDetails of insuranceInstanceDetails ;trackBy: trackId">
+                    <td><a [routerLink]="['/insurance-instance-details', insuranceInstanceDetails.id, 'view']">{{ insuranceInstanceDetails.id }}</a></td>
+                    <td>
+                        <a *ngIf="insuranceInstanceDetails.image" (click)="openFile(insuranceInstanceDetails.imageContentType, insuranceInstanceDetails.image)">
+                            <img [src]="'data:' + insuranceInstanceDetails.imageContentType + ';base64,' + insuranceInstanceDetails.image" style="max-height: 30px;" alt="insuranceInstanceDetails image"/>
+                        </a>
+                        <span *ngIf="insuranceInstanceDetails.image">{{ insuranceInstanceDetails.imageContentType }}, {{ byteSize(insuranceInstanceDetails.image) }}</span>
+                    </td>
+                    <td>{{ insuranceInstanceDetails.comments }}</td>
+                    <td jhiTranslate="{{ 'insuranceApplicationApp.InstanceDetailsStatus.' + insuranceInstanceDetails.status }}">{{ insuranceInstanceDetails.status }}</td>
+                    <td>
+                        <div *ngIf="insuranceInstanceDetails.specificationId">
+                            <a [routerLink]="['/insurance-specification', insuranceInstanceDetails.specificationId , 'view']" >{{ insuranceInstanceDetails.specificationId }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="insuranceInstanceDetails.insuranceInstanceId">
+                            <a [routerLink]="['/insurance-instance', insuranceInstanceDetails.insuranceInstanceId , 'view']" >{{ insuranceInstanceDetails.insuranceInstanceId }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/insurance-instance-details', insuranceInstanceDetails.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/insurance-instance-details', insuranceInstanceDetails.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(insuranceInstanceDetails)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="insuranceInstanceDetails?.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

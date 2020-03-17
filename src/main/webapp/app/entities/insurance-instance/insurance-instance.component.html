@@ -1,0 +1,81 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="insuranceApplicationApp.insuranceInstance.home.title">Insurance Instances</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-insurance-instance" [routerLink]="['/insurance-instance/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="insuranceApplicationApp.insuranceInstance.home.createLabel">
+            Create a new Insurance Instance
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="insuranceInstances?.length === 0">
+        <span jhiTranslate="insuranceApplicationApp.insuranceInstance.home.notFound">No insuranceInstances found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="insuranceInstances?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="instanceDate"><span jhiTranslate="insuranceApplicationApp.insuranceInstance.instanceDate">Instance Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="userId"><span jhiTranslate="insuranceApplicationApp.insuranceInstance.user">User</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="insuranceObjectId"><span jhiTranslate="insuranceApplicationApp.insuranceInstance.insuranceObject">Insurance Object</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let insuranceInstance of insuranceInstances ;trackBy: trackId">
+                    <td><a [routerLink]="['/insurance-instance', insuranceInstance.id, 'view']">{{ insuranceInstance.id }}</a></td>
+                    <td>{{ insuranceInstance.instanceDate | date:'medium' }}</td>
+                    <td>
+                        {{ insuranceInstance.userId }}
+                    </td>
+                    <td>
+                        <div *ngIf="insuranceInstance.insuranceObjectId">
+                            <a [routerLink]="['/insurance-object', insuranceInstance.insuranceObjectId , 'view']" >{{ insuranceInstance.insuranceObjectId }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/insurance-instance', insuranceInstance.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/insurance-instance', insuranceInstance.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(insuranceInstance)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="insuranceInstances?.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>
