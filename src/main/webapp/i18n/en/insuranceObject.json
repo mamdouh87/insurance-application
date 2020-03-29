@@ -20,6 +20,9 @@
       "identifier2": "Identifier 2",
       "identifier3": "Identifier 3",
       "instance": "Instance"
+    },
+    "inquireInsuranceObject": {
+      "title": "Insurance Objects"
     }
   }
 }

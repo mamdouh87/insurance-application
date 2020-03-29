@@ -1,13 +1,15 @@
 package com.idealsoft.insurance.service.dto;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A DTO for the {@link com.idealsoft.insurance.domain.InsuranceObject} entity.
  */
 public class InsuranceObjectDTO implements Serializable {
-    
+
     private Long id;
 
     private String identifier1;
@@ -16,7 +18,9 @@ public class InsuranceObjectDTO implements Serializable {
 
     private String identifier3;
 
-    
+    private List<InsuranceInstanceDTO> insuranceInstanceDTOS;
+
+
     public Long getId() {
         return id;
     }
@@ -47,6 +51,14 @@ public class InsuranceObjectDTO implements Serializable {
 
     public void setIdentifier3(String identifier3) {
         this.identifier3 = identifier3;
+    }
+
+    public List<InsuranceInstanceDTO> getInsuranceInstanceDTOS() {
+        return insuranceInstanceDTOS;
+    }
+
+    public void setInsuranceInstanceDTOS(List<InsuranceInstanceDTO> insuranceInstanceDTOS) {
+        this.insuranceInstanceDTOS = insuranceInstanceDTOS;
     }
 
     @Override

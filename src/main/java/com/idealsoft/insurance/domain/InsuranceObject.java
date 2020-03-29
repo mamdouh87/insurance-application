@@ -16,7 +16,7 @@ import java.util.Set;
 @Entity
 @Table(name = "insurance_object")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class InsuranceObject implements Serializable {
+public class InsuranceObject extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -34,8 +34,8 @@ public class InsuranceObject implements Serializable {
     @Column(name = "identifier_3")
     private String identifier3;
 
-    @OneToMany(mappedBy = "insuranceObject")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @OneToMany(mappedBy = "insuranceObject",fetch = FetchType.EAGER)
+   // @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<InsuranceInstance> instances = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

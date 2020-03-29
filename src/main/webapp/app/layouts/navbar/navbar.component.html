@@ -34,6 +34,12 @@
                         </a>
                     </li>
                     <li>
+                        <a class="dropdown-item" routerLink="insurance-object/inquire" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.insuranceObject">Inquire Insurance Object</span>
+                        </a>
+                    </li>
+                    <li>
                         <a class="dropdown-item" routerLink="insurance-instance" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.insuranceInstance">Insurance Instance</span>

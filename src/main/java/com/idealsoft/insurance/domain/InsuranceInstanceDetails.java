@@ -17,7 +17,7 @@ import com.idealsoft.insurance.domain.enumeration.InstanceDetailsStatus;
 @Entity
 @Table(name = "insurance_instance_details")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class InsuranceInstanceDetails implements Serializable {
+public class InsuranceInstanceDetails extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

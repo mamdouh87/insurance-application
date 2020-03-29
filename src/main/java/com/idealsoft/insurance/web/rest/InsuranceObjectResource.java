@@ -109,6 +109,20 @@ public class InsuranceObjectResource {
         Optional<InsuranceObjectDTO> insuranceObjectDTO = insuranceObjectService.findOne(id);
         return ResponseUtil.wrapOrNotFound(insuranceObjectDTO);
     }
+    /**
+     * {@code GET  /insurance-objects/:id} : get the "id" insuranceObject.
+     *
+     * @param id1 the id of the insuranceObjectDTO to retrieve.
+     * @param id2 the id of the insuranceObjectDTO to retrieve.
+     * @param id3 the id of the insuranceObjectDTO to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the insuranceObjectDTO, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/insurance-objects/byIdentification")
+    public ResponseEntity<InsuranceObjectDTO> getInsuranceObjectByIdentification(@RequestParam(value = "id1",required = false) String id1,@RequestParam(value = "id2",required = false) String id2,@RequestParam(value = "id3",required = false) String id3) {
+        log.debug("REST request to get InsuranceObject : {} {} {}", id1,id2,id3);
+        Optional<InsuranceObjectDTO> insuranceObjectDTO = insuranceObjectService.findByIdentifications(id1,id2,id3);
+        return ResponseUtil.wrapOrNotFound(insuranceObjectDTO);
+    }
 
     /**
      * {@code DELETE  /insurance-objects/:id} : delete the "id" insuranceObject.
