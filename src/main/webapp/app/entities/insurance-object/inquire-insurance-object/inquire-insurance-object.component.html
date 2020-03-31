@@ -1,0 +1,85 @@
+<h2 id="page-heading">
+    <span jhiTranslate="insuranceApplicationApp.inquireInsuranceObject.title">Inquire Insurance Objects</span>
+</h2>
+<div>
+    <button accept="image/*" id="file_image2" (click)="compressFile()">Upload and compress</button>
+
+    <div *ngIf="imgResultBeforeCompress" class="form-text text-danger clearfix">
+        <span class="pull-left">{{imageContentType}} , {{ byteSize(imgResultBeforeCompress) }}</span>
+    </div>
+    <div *ngIf="imgResultAfterCompress" class="form-text text-danger clearfix">
+        <span class="pull-left">{{imageContentType}} , {{ byteSize(imgResultAfterCompress) }}</span>
+    </div>
+    <button *ngIf="imgResultBeforeCompress" type="button" (click)="clearInputImage2('file_image2')" class="btn btn-secondary btn-xs pull-right">
+        <fa-icon icon="times"></fa-icon>
+    </button>
+    <img *ngIf="imgResultBeforeCompress" [src]="imgResultBeforeCompress" alt="">
+    <img *ngIf="imgResultAfterCompress" [src]="imgResultAfterCompress" alt="">
+</div>
+<qrcode [qrdata]="myAngularxQrCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+<span>{{myAngularxQrCode}}</span>
+<zxing-scanner
+    (scanSuccess)="scanSuccessHandler($event)"
+></zxing-scanner>
+<jhi-alert-error></jhi-alert-error>
+
+<jhi-alert></jhi-alert>
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="insuranceObject">
+            <h2><span jhiTranslate="insuranceApplicationApp.insuranceObject.detail.title">Insurance Object</span> {{ insuranceObject.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="insuranceApplicationApp.insuranceObject.identifier1">Identifier 1</span></dt>
+                <dd>
+                    <span>{{ insuranceObject.identifier1 }}</span>
+                </dd>
+                <dt><span jhiTranslate="insuranceApplicationApp.insuranceObject.identifier2">Identifier 2</span></dt>
+                <dd>
+                    <span>{{ insuranceObject.identifier2 }}</span>
+                </dd>
+                <dt><span jhiTranslate="insuranceApplicationApp.insuranceObject.identifier3">Identifier 3</span></dt>
+                <dd>
+                    <span>{{ insuranceObject.identifier3 }}</span>
+                </dd>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="insuranceApplicationApp.insuranceInstanceDetails.image" for="field_image">Image</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('imageContentType')!.value + ';base64,' + editForm.get('image')!.value" style="max-height: 100px;" *ngIf="editForm.get('image')!.value" alt="insuranceInstanceDetails image"/>
+                        <div *ngIf="editForm.get('image')!.value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{ editForm.get('imageContentType')!.value }}, {{ byteSize(editForm.get('image')!.value) }}</span>
+                            <button type="button" (click)="clearInputImage('image', 'imageContentType', 'file_image')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_image"  (change)="setFileData($event, 'image', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="image" id="field_image"
+                           formControlName="image"/>
+                    <input type="hidden" class="form-control" name="imageContentType" id="field_imageContentType"
+                           formControlName="imageContentType" />
+                </div>
+
+
+            </dl>
+
+            <!--<button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/insurance-object', insuranceObject.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>-->
+        </div>
+
+    </div>
+</div>
