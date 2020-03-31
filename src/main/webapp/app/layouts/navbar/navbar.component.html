@@ -57,6 +57,12 @@
                             <span jhiTranslate="global.menu.entities.insuranceInstanceDetails">Insurance Instance Details</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="insurance-object-type" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.insuranceObjectType">Insurance Object Type</span>
+                        </a>
+                    </li>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </ul>
             </li>

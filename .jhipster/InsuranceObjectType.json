@@ -1,0 +1,37 @@
+{
+    "name": "InsuranceObjectType",
+    "fields": [
+        {
+            "fieldName": "code",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "descriptionAr",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "descriptionEn",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "insuranceSpecification",
+            "otherEntityRelationshipName": "insuranceObjectType",
+            "relationshipName": "objectType",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200331112300",
+    "entityTableName": "insurance_object_type",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}
