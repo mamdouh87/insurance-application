@@ -86,7 +86,6 @@ export class InsuranceInstanceDetailsUpdateComponent implements OnInit {
         new JhiEventWithContent<AlertError>('insuranceApplicationApp.error', { ...err, key: 'error.file.' + err.key })
       );
     });
-
   }
 
   clearInputImage(field: string, fieldContentType: string, idInput: string): void {

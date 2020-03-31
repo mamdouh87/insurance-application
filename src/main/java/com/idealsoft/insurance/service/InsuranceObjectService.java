@@ -59,30 +59,6 @@ public class InsuranceObjectService {
     }
 
     /**
-     * Get all the insuranceObjects.
-     *
-     * @param id1
-     * @param id2
-     * @param id3
-     * @return the list of entities.
-     */
-    public Optional<InsuranceObjectDTO> findByIdentifications(String id1,String id2,String id3) {
-        log.debug("Request to get all InsuranceObjects");
-
-        Optional<InsuranceObjectDTO> result = insuranceObjectRepository.findByIdentifications(id1, id2, id3)
-            .map(insuranceObjectMapper::toDto);
-        if (!result.isPresent()) {
-            InsuranceObject insuranceObject = new InsuranceObject();
-            insuranceObject.setIdentifier1(id1);
-            insuranceObject.setIdentifier2(id2);
-            insuranceObject.setIdentifier3(id3);
-            insuranceObject = insuranceObjectRepository.save(insuranceObject);
-            result = Optional.of(insuranceObject).map(insuranceObjectMapper::toDto);
-        }
-        return result;
-    }
-
-    /**
      * Get one insuranceObject by id.
      *
      * @param id the id of the entity.

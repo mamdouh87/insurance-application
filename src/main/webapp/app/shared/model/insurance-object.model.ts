@@ -6,6 +6,7 @@ export interface IInsuranceObject {
   identifier2?: string;
   identifier3?: string;
   instances?: IInsuranceInstance[];
+  typeId?: number;
 }
 
 export class InsuranceObject implements IInsuranceObject {
@@ -14,6 +15,7 @@ export class InsuranceObject implements IInsuranceObject {
     public identifier1?: string,
     public identifier2?: string,
     public identifier3?: string,
-    public instances?: IInsuranceInstance[]
+    public instances?: IInsuranceInstance[],
+    public typeId?: number
   ) {}
 }
