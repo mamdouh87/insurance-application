@@ -4,7 +4,11 @@ entity InsuranceObject{
     identifier2 String
     identifier3 String
 }
-
+entity InsuranceObjectType{
+	code String
+    descriptionAr String
+    descriptionEn String
+}
 entity InsuranceInstance{
 	instanceDate Instant
 }
@@ -39,6 +43,12 @@ relationship ManyToOne {
 }
 relationship OneToOne {
 	InsuranceInstance{user} to User
+}
+relationship ManyToOne {
+	InsuranceObject{type} to InsuranceObjectType
+}
+relationship ManyToOne {
+	InsuranceObjectType{objectType} to InsuranceSpecification
 }
 paginate * with pagination
 
