@@ -24,6 +24,11 @@ import { RouterModule } from '@angular/router';
           import('./insurance-instance-details/insurance-instance-details.module').then(
             m => m.InsuranceApplicationInsuranceInstanceDetailsModule
           )
+      },
+      {
+        path: 'insurance-object-type',
+        loadChildren: () =>
+          import('./insurance-object-type/insurance-object-type.module').then(m => m.InsuranceApplicationInsuranceObjectTypeModule)
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])

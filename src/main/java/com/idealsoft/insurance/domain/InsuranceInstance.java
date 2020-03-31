@@ -18,7 +18,7 @@ import java.util.Set;
 @Entity
 @Table(name = "insurance_instance")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class InsuranceInstance extends AbstractAuditingEntity implements Serializable {
+public class InsuranceInstance implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -31,7 +31,7 @@ public class InsuranceInstance extends AbstractAuditingEntity implements Seriali
     private Instant instanceDate;
 
     @OneToOne
-    @JoinColumn(name="created_by_user")
+    @JoinColumn(unique = true)
     private User user;
 
     @OneToMany(mappedBy = "insuranceInstance")

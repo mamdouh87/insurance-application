@@ -7,21 +7,15 @@ import { InsuranceObjectDetailComponent } from './insurance-object-detail.compon
 import { InsuranceObjectUpdateComponent } from './insurance-object-update.component';
 import { InsuranceObjectDeleteDialogComponent } from './insurance-object-delete-dialog.component';
 import { insuranceObjectRoute } from './insurance-object.route';
-import { QRCodeModule } from 'angularx-qrcode';
-import { ZXingScannerModule } from '@zxing/ngx-scanner';
-import {NgxImageCompressService} from 'ngx-image-compress';
-import { InquireInsuranceObjectComponent } from './inquire-insurance-object/inquire-insurance-object.component';
 
 @NgModule({
-  imports: [InsuranceApplicationSharedModule,QRCodeModule,ZXingScannerModule,RouterModule.forChild(insuranceObjectRoute)],
+  imports: [InsuranceApplicationSharedModule, RouterModule.forChild(insuranceObjectRoute)],
   declarations: [
     InsuranceObjectComponent,
     InsuranceObjectDetailComponent,
     InsuranceObjectUpdateComponent,
-    InsuranceObjectDeleteDialogComponent,
-    InquireInsuranceObjectComponent
+    InsuranceObjectDeleteDialogComponent
   ],
-  entryComponents: [InsuranceObjectDeleteDialogComponent],
-  providers :[NgxImageCompressService]
+  entryComponents: [InsuranceObjectDeleteDialogComponent]
 })
 export class InsuranceApplicationInsuranceObjectModule {}

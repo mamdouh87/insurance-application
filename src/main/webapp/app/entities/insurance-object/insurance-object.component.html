@@ -8,17 +8,8 @@
             Create a new Insurance Object
             </span>
         </button>
-        <br>
-        <br>
-        <br>
-
     </h2>
 
-    <qrcode [qrdata]="myAngularxQrCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
-    <span>{{myAngularxQrCode}}</span>
-    <zxing-scanner
-        (scanSuccess)="scanSuccessHandler($event)"
-    ></zxing-scanner>
     <jhi-alert-error></jhi-alert-error>
 
     <jhi-alert></jhi-alert>
@@ -35,6 +26,7 @@
                     <th scope="col"  jhiSortBy="identifier1"><span jhiTranslate="insuranceApplicationApp.insuranceObject.identifier1">Identifier 1</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="identifier2"><span jhiTranslate="insuranceApplicationApp.insuranceObject.identifier2">Identifier 2</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="identifier3"><span jhiTranslate="insuranceApplicationApp.insuranceObject.identifier3">Identifier 3</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="typeId"><span jhiTranslate="insuranceApplicationApp.insuranceObject.type">Type</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -44,6 +36,11 @@
                     <td>{{ insuranceObject.identifier1 }}</td>
                     <td>{{ insuranceObject.identifier2 }}</td>
                     <td>{{ insuranceObject.identifier3 }}</td>
+                    <td>
+                        <div *ngIf="insuranceObject.typeId">
+                            <a [routerLink]="['/insurance-object-type', insuranceObject.typeId , 'view']" >{{ insuranceObject.typeId }}</a>
+                        </div>
+                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

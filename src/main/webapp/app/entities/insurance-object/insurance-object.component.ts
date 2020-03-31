@@ -18,9 +18,6 @@ import { InsuranceObjectDeleteDialogComponent } from './insurance-object-delete-
 export class InsuranceObjectComponent implements OnInit, OnDestroy {
   insuranceObjects?: IInsuranceObject[];
   eventSubscriber?: Subscription;
-
-
-  myAngularxQrCode: string ;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
   page!: number;
@@ -34,9 +31,7 @@ export class InsuranceObjectComponent implements OnInit, OnDestroy {
     protected router: Router,
     protected eventManager: JhiEventManager,
     protected modalService: NgbModal
-  ) {
-    this.myAngularxQrCode='sc;lkdl;kcl;dkcl;dkc;ldkc;ldk;ldkc;ldkv;ldkv;lkdv;ldkv';
-  }
+  ) {}
 
   loadPage(page?: number): void {
     const pageToLoad: number = page || this.page;
@@ -52,11 +47,7 @@ export class InsuranceObjectComponent implements OnInit, OnDestroy {
         () => this.onError()
       );
   }
-  scanSuccessHandler(result: string):void{
-    const pageToLoad: number = 1 || this.page;
-    this.myAngularxQrCode=result;
-    JSON.parse(result);
-  }
+
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(data => {
       this.page = data.pagingParams.page;

@@ -1,0 +1,25 @@
+{
+  "insuranceApplicationApp": {
+    "insuranceObjectType": {
+      "home": {
+        "title": "Insurance Object Types",
+        "createLabel": "Create a new Insurance Object Type",
+        "createOrEditLabel": "Create or edit a Insurance Object Type",
+        "notFound": "No Insurance Object Types found"
+      },
+      "created": "A new Insurance Object Type is created with identifier {{ param }}",
+      "updated": "A Insurance Object Type is updated with identifier {{ param }}",
+      "deleted": "A Insurance Object Type is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Insurance Object Type {{ id }}?"
+      },
+      "detail": {
+        "title": "Insurance Object Type"
+      },
+      "code": "Code",
+      "descriptionAr": "Description Ar",
+      "descriptionEn": "Description En",
+      "objectType": "Object Type"
+    }
+  }
+}

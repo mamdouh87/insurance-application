@@ -12,7 +12,6 @@ import { InsuranceObjectService } from './insurance-object.service';
 import { InsuranceObjectComponent } from './insurance-object.component';
 import { InsuranceObjectDetailComponent } from './insurance-object-detail.component';
 import { InsuranceObjectUpdateComponent } from './insurance-object-update.component';
-import {InquireInsuranceObjectComponent} from "app/entities/insurance-object/inquire-insurance-object/inquire-insurance-object.component";
 
 @Injectable({ providedIn: 'root' })
 export class InsuranceObjectResolve implements Resolve<IInsuranceObject> {
@@ -83,18 +82,6 @@ export const insuranceObjectRoute: Routes = [
     data: {
       authorities: [Authority.USER],
       pageTitle: 'insuranceApplicationApp.insuranceObject.home.title'
-    },
-    canActivate: [UserRouteAccessService]
-  },
-  {
-    path: 'inquire',
-    component: InquireInsuranceObjectComponent,
-    resolve: {
-      insuranceObject: InsuranceObjectResolve
-    },
-    data: {
-      authorities: [Authority.USER],
-      pageTitle: 'insuranceApplicationApp.inquireInsuranceObject.title'
     },
     canActivate: [UserRouteAccessService]
   }

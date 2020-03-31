@@ -1,0 +1,44 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="insuranceObjectType">
+            <h2><span jhiTranslate="insuranceApplicationApp.insuranceObjectType.detail.title">Insurance Object Type</span> {{ insuranceObjectType.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="insuranceApplicationApp.insuranceObjectType.code">Code</span></dt>
+                <dd>
+                    <span>{{ insuranceObjectType.code }}</span>
+                </dd>
+                <dt><span jhiTranslate="insuranceApplicationApp.insuranceObjectType.descriptionAr">Description Ar</span></dt>
+                <dd>
+                    <span>{{ insuranceObjectType.descriptionAr }}</span>
+                </dd>
+                <dt><span jhiTranslate="insuranceApplicationApp.insuranceObjectType.descriptionEn">Description En</span></dt>
+                <dd>
+                    <span>{{ insuranceObjectType.descriptionEn }}</span>
+                </dd>
+                <dt><span jhiTranslate="insuranceApplicationApp.insuranceObjectType.objectType">Object Type</span></dt>
+                <dd>
+                    <div *ngIf="insuranceObjectType.objectTypeId">
+                        <a [routerLink]="['/insurance-specification', insuranceObjectType.objectTypeId, 'view']">{{ insuranceObjectType.objectTypeId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/insurance-object-type', insuranceObjectType.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
