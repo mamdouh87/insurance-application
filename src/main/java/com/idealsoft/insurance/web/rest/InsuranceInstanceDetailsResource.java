@@ -83,6 +83,18 @@ public class InsuranceInstanceDetailsResource {
             .body(result);
     }
 
+    @PutMapping("/insurance-instance-details-with-images-comment")
+    public ResponseEntity<InsuranceInstanceDetailsDTO> updateInsuranceInstanceDetailsWithImagesAndComment(@RequestBody InsuranceInstanceDetailsDTO insuranceInstanceDetailsDTO) throws URISyntaxException {
+        log.debug("REST request to update InsuranceInstanceDetails : {}", insuranceInstanceDetailsDTO);
+        if (insuranceInstanceDetailsDTO.getId() == null) {
+            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+        }
+        InsuranceInstanceDetailsDTO result = insuranceInstanceDetailsService.updateInsuranceInstanceDetailsWithImagesAndComment(insuranceInstanceDetailsDTO);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, insuranceInstanceDetailsDTO.getId().toString()))
+            .body(result);
+    }
+
     /**
      * {@code GET  /insurance-instance-details} : get all the insuranceInstanceDetails.
      *
@@ -107,6 +119,18 @@ public class InsuranceInstanceDetailsResource {
     public ResponseEntity<InsuranceInstanceDetailsDTO> getInsuranceInstanceDetails(@PathVariable Long id) {
         log.debug("REST request to get InsuranceInstanceDetails : {}", id);
         Optional<InsuranceInstanceDetailsDTO> insuranceInstanceDetailsDTO = insuranceInstanceDetailsService.findOne(id);
+        return ResponseUtil.wrapOrNotFound(insuranceInstanceDetailsDTO);
+    }
+    /**
+     * {@code GET  /insurance-instance-details/:id} : get the "id" specification-id.
+     *
+     * @param id the id of the insuranceInstanceDetailsDTO to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the insuranceInstanceDetailsDTO, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/insurance-instance-details/by-specification-id/{id}")
+    public ResponseEntity<InsuranceInstanceDetailsDTO> getInsuranceInstanceDetailsBySpecificationId(@PathVariable Long id) {
+        log.debug("REST request to get InsuranceInstanceDetails : {}", id);
+        Optional<InsuranceInstanceDetailsDTO> insuranceInstanceDetailsDTO = insuranceInstanceDetailsService.getInsuranceInstanceDetailsBySpecificationId(id);
         return ResponseUtil.wrapOrNotFound(insuranceInstanceDetailsDTO);
     }
 

@@ -41,10 +41,12 @@ public class InsuranceInstanceDetails extends AbstractAuditingEntity implements 
     private InstanceDetailsStatus status;
 
     @ManyToOne
+    @JoinColumn(name="specification_id")
     @JsonIgnoreProperties("insuranceInstanceDetails")
     private InsuranceSpecification specification;
 
     @ManyToOne
+    @JoinColumn(name="insurance_instance_id")
     @JsonIgnoreProperties("details")
     private InsuranceInstance insuranceInstance;
 

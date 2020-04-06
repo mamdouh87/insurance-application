@@ -12,7 +12,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Service Implementation for managing {@link InsuranceSpecification}.
@@ -80,4 +82,13 @@ public class InsuranceSpecificationService {
         log.debug("Request to delete InsuranceSpecification : {}", id);
         insuranceSpecificationRepository.deleteById(id);
     }
+
+    public List<InsuranceSpecification> findByInsuranceObjectType_Id(Long insuranceObjectTypeId){
+        return insuranceSpecificationRepository.findByInsuranceObjectType_Id(insuranceObjectTypeId);
+    }
+
+    public List<InsuranceSpecificationDTO> getInsuranceSpecificationByObjectTypeId(Long insuranceObjectTypeId) {
+        return findByInsuranceObjectType_Id(insuranceObjectTypeId).stream().map(insuranceSpecificationMapper::toDto).collect(Collectors.toList());
+    }
+
 }

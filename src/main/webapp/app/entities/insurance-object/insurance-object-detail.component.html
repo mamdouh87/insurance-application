@@ -20,6 +20,12 @@
                 <dd>
                     <span>{{ insuranceObject.identifier3 }}</span>
                 </dd>
+                <dt><span jhiTranslate="insuranceApplicationApp.insuranceObject.type">Type</span></dt>
+                <dd>
+                    <div *ngIf="insuranceObject.typeId">
+                        <a [routerLink]="['/insurance-object-type', insuranceObject.typeId, 'view']">{{ insuranceObject.typeId }}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

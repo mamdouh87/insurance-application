@@ -20,6 +20,13 @@
             "otherEntityName": "insuranceInstance",
             "otherEntityRelationshipName": "insuranceObject",
             "relationshipName": "instance"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "insuranceObjectType",
+            "otherEntityRelationshipName": "insuranceObject",
+            "relationshipName": "type",
+            "otherEntityField": "id"
         }
     ],
     "changelogDate": "20200317130700",
@@ -32,5 +39,7 @@
     "readOnly": false,
     "embedded": false,
     "clientRootFolder": "",
-    "applications": "*"
+    "applications": "*",
+    "skipClient": true,
+    "skipServer": true
 }

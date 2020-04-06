@@ -3,7 +3,6 @@ package com.idealsoft.insurance.service.dto;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  * A DTO for the {@link com.idealsoft.insurance.domain.InsuranceObject} entity.
@@ -20,6 +19,10 @@ public class InsuranceObjectDTO implements Serializable {
 
     private List<InsuranceInstanceDTO> insuranceInstanceDTOS;
 
+    private Long typeId;
+
+    private String typeDescEn;
+    private String typeDescAr;
 
     public Long getId() {
         return id;
@@ -61,6 +64,30 @@ public class InsuranceObjectDTO implements Serializable {
         this.insuranceInstanceDTOS = insuranceInstanceDTOS;
     }
 
+    public Long getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(Long insuranceObjectTypeId) {
+        this.typeId = insuranceObjectTypeId;
+    }
+
+    public String getTypeDescEn() {
+        return typeDescEn;
+    }
+
+    public void setTypeDescEn(String typeDescEn) {
+        this.typeDescEn = typeDescEn;
+    }
+
+    public String getTypeDescAr() {
+        return typeDescAr;
+    }
+
+    public void setTypeDescAr(String typeDescAr) {
+        this.typeDescAr = typeDescAr;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -89,6 +116,7 @@ public class InsuranceObjectDTO implements Serializable {
             ", identifier1='" + getIdentifier1() + "'" +
             ", identifier2='" + getIdentifier2() + "'" +
             ", identifier3='" + getIdentifier3() + "'" +
+            ", typeId=" + getTypeId() +
             "}";
     }
 }

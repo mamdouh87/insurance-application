@@ -1,5 +1,6 @@
 package com.idealsoft.insurance.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -31,6 +32,14 @@ public class InsuranceSpecification extends AbstractAuditingEntity implements Se
 
     @Column(name = "description_en")
     private String descriptionEn;
+
+    @Column(name = "image_url")
+    private String imageURL;
+
+    @ManyToOne
+    @JoinColumn(name="insurance_object_type_id")
+    @JsonIgnoreProperties("insuranceSpecifications")
+    private InsuranceObjectType insurenceObjectType;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -79,6 +88,28 @@ public class InsuranceSpecification extends AbstractAuditingEntity implements Se
     public void setDescriptionEn(String descriptionEn) {
         this.descriptionEn = descriptionEn;
     }
+
+    public InsuranceObjectType getInsurenceObjectType() {
+        return insurenceObjectType;
+    }
+
+    public InsuranceSpecification insurenceObjectType(InsuranceObjectType insuranceObjectType) {
+        this.insurenceObjectType = insuranceObjectType;
+        return this;
+    }
+
+    public void setInsurenceObjectType(InsuranceObjectType insuranceObjectType) {
+        this.insurenceObjectType = insuranceObjectType;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override

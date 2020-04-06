@@ -61,6 +61,24 @@ public class InsuranceInstanceResource {
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
+    /**
+     * {@code POST  /insurance-instances} : Create a new insuranceInstance.
+     *
+     * @param insuranceInstanceDTO the insuranceInstanceDTO to create.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new insuranceInstanceDTO, or with status {@code 400 (Bad Request)} if the insuranceInstance has already an ID.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     */
+    @PostMapping("/insurance-instances-with-details")
+    public ResponseEntity<InsuranceInstanceDTO> createInsuranceInstanceWithDetails(@RequestBody InsuranceInstanceDTO insuranceInstanceDTO) throws URISyntaxException {
+        log.debug("REST request to save InsuranceInstance : {}", insuranceInstanceDTO);
+        if (insuranceInstanceDTO.getId() != null) {
+            throw new BadRequestAlertException("A new insuranceInstance cannot already have an ID", ENTITY_NAME, "idexists");
+        }
+        InsuranceInstanceDTO result = insuranceInstanceService.createInsuranceInstanceWithDetails(insuranceInstanceDTO);
+        return ResponseEntity.created(new URI("/api/insurance-instances/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
+            .body(result);
+    }
 
     /**
      * {@code PUT  /insurance-instances} : Updates an existing insuranceInstance.

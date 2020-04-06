@@ -14,7 +14,15 @@
             "fieldType": "String"
         }
     ],
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "insuranceObjectType",
+            "otherEntityRelationshipName": "insuranceSpecification",
+            "relationshipName": "insurenceObjectType",
+            "otherEntityField": "id"
+        }
+    ],
     "changelogDate": "20200317130900",
     "entityTableName": "insurance_specification",
     "dto": "mapstruct",
@@ -25,5 +33,7 @@
     "readOnly": false,
     "embedded": false,
     "clientRootFolder": "",
-    "applications": "*"
+    "applications": "*",
+    "skipClient": true,
+    "skipServer": true
 }

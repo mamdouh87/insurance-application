@@ -18,7 +18,8 @@
       },
       "code": "Code",
       "descriptionAr": "Description Ar",
-      "descriptionEn": "Description En"
+      "descriptionEn": "Description En",
+      "insurenceObjectType": "Insurence Object Type"
     }
   }
 }

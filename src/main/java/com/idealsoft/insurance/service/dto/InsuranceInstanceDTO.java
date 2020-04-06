@@ -8,7 +8,7 @@ import java.util.Objects;
  * A DTO for the {@link com.idealsoft.insurance.domain.InsuranceInstance} entity.
  */
 public class InsuranceInstanceDTO implements Serializable {
-    
+
     private Long id;
 
     private Instant instanceDate;
@@ -17,7 +17,10 @@ public class InsuranceInstanceDTO implements Serializable {
     private Long userId;
 
     private Long insuranceObjectId;
-    
+
+    private Integer status;
+
+
     public Long getId() {
         return id;
     }
@@ -50,6 +53,14 @@ public class InsuranceInstanceDTO implements Serializable {
         this.insuranceObjectId = insuranceObjectId;
     }
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -77,7 +88,10 @@ public class InsuranceInstanceDTO implements Serializable {
             "id=" + getId() +
             ", instanceDate='" + getInstanceDate() + "'" +
             ", userId=" + getUserId() +
+            ", status=" + getStatus() +
             ", insuranceObjectId=" + getInsuranceObjectId() +
             "}";
     }
+
+
 }

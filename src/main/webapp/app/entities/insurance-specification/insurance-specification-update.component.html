@@ -28,6 +28,14 @@
                     <input type="text" class="form-control" name="descriptionEn" id="field_descriptionEn"
                            formControlName="descriptionEn"/>
                 </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="insuranceApplicationApp.insuranceSpecification.insurenceObjectType" for="field_insurenceObjectType">Insurence Object Type</label>
+                    <select class="form-control" id="field_insurenceObjectType" name="insurenceObjectType" formControlName="insurenceObjectTypeId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="insuranceObjectTypeOption.id" *ngFor="let insuranceObjectTypeOption of insuranceobjecttypes; trackBy: trackById">{{ insuranceObjectTypeOption.id }}</option>
+                    </select>
+                </div>
             </div>
 
             <div>

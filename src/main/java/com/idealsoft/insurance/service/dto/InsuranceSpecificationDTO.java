@@ -7,7 +7,7 @@ import java.util.Objects;
  * A DTO for the {@link com.idealsoft.insurance.domain.InsuranceSpecification} entity.
  */
 public class InsuranceSpecificationDTO implements Serializable {
-    
+
     private Long id;
 
     private String code;
@@ -16,7 +16,11 @@ public class InsuranceSpecificationDTO implements Serializable {
 
     private String descriptionEn;
 
-    
+
+    private Long insurenceObjectTypeId;
+
+    private String imageURL;
+
     public Long getId() {
         return id;
     }
@@ -49,6 +53,22 @@ public class InsuranceSpecificationDTO implements Serializable {
         this.descriptionEn = descriptionEn;
     }
 
+    public Long getInsurenceObjectTypeId() {
+        return insurenceObjectTypeId;
+    }
+
+    public void setInsurenceObjectTypeId(Long insuranceObjectTypeId) {
+        this.insurenceObjectTypeId = insuranceObjectTypeId;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -77,6 +97,8 @@ public class InsuranceSpecificationDTO implements Serializable {
             ", code='" + getCode() + "'" +
             ", descriptionAr='" + getDescriptionAr() + "'" +
             ", descriptionEn='" + getDescriptionEn() + "'" +
+            ", insurenceObjectTypeId=" + getInsurenceObjectTypeId() +
+            ", imageURL=" + getImageURL() +
             "}";
     }
 }

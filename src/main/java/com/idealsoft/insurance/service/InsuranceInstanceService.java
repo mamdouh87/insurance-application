@@ -1,17 +1,25 @@
 package com.idealsoft.insurance.service;
 
 import com.idealsoft.insurance.domain.InsuranceInstance;
+import com.idealsoft.insurance.domain.InsuranceInstanceDetails;
+import com.idealsoft.insurance.domain.InsuranceSpecification;
+import com.idealsoft.insurance.repository.InsuranceInstanceDetailsRepository;
 import com.idealsoft.insurance.repository.InsuranceInstanceRepository;
 import com.idealsoft.insurance.service.dto.InsuranceInstanceDTO;
+import com.idealsoft.insurance.service.dto.InsuranceObjectDTO;
 import com.idealsoft.insurance.service.mapper.InsuranceInstanceMapper;
+import com.idealsoft.insurance.web.rest.errors.BadRequestAlertException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -26,6 +34,18 @@ public class InsuranceInstanceService {
     private final InsuranceInstanceRepository insuranceInstanceRepository;
 
     private final InsuranceInstanceMapper insuranceInstanceMapper;
+
+    @Autowired
+    InsuranceObjectService insuranceObjectService;
+
+    @Autowired
+    InsuranceSpecificationService insuranceSpecificationService;
+
+    @Autowired
+    InsuranceInstanceDetailsRepository insuranceInstanceDetailsRepository;
+
+    @Autowired
+    UserService userService;
 
     public InsuranceInstanceService(InsuranceInstanceRepository insuranceInstanceRepository, InsuranceInstanceMapper insuranceInstanceMapper) {
         this.insuranceInstanceRepository = insuranceInstanceRepository;
@@ -42,6 +62,31 @@ public class InsuranceInstanceService {
         log.debug("Request to save InsuranceInstance : {}", insuranceInstanceDTO);
         InsuranceInstance insuranceInstance = insuranceInstanceMapper.toEntity(insuranceInstanceDTO);
         insuranceInstance = insuranceInstanceRepository.save(insuranceInstance);
+        return insuranceInstanceMapper.toDto(insuranceInstance);
+    }
+    public InsuranceInstanceDTO createInsuranceInstanceWithDetails(InsuranceInstanceDTO insuranceInstanceDTO) {
+
+        InsuranceInstance insuranceInstance = insuranceInstanceMapper.toEntity(insuranceInstanceDTO);
+        insuranceInstance.setStatus(InsuranceInstance.Status.IN_COMPLETED.getValue());
+        insuranceInstance.setInstanceDate(Instant.now());
+        insuranceInstance.setUser(userService.getUserWithAuthorities().get());
+        insuranceInstance = insuranceInstanceRepository.save(insuranceInstance);
+
+        Optional<InsuranceObjectDTO> insuranceObject = insuranceObjectService.findOne(insuranceInstanceDTO.getInsuranceObjectId());
+        if (!insuranceObject.isPresent()) {
+            throw new BadRequestAlertException("insurance Object is not exist","","");
+        }
+        Long insuranceObjectTypeId = insuranceObject.get().getTypeId();
+        List<InsuranceSpecification> specificationList = insuranceSpecificationService.findByInsuranceObjectType_Id(insuranceObjectTypeId);
+        List<InsuranceInstanceDetails>  insuranceInstanceDetailsList = new ArrayList<>();
+        for (InsuranceSpecification spec : specificationList) {
+            InsuranceInstanceDetails temp = new InsuranceInstanceDetails();
+            temp.setInsuranceInstance(insuranceInstance);
+            temp.setSpecification(spec);
+            insuranceInstanceDetailsList.add(temp);
+        }
+        insuranceInstanceDetailsRepository.saveAll(insuranceInstanceDetailsList);
+
         return insuranceInstanceMapper.toDto(insuranceInstance);
     }
 

@@ -26,6 +26,7 @@
                     <th scope="col"  jhiSortBy="code"><span jhiTranslate="insuranceApplicationApp.insuranceSpecification.code">Code</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="descriptionAr"><span jhiTranslate="insuranceApplicationApp.insuranceSpecification.descriptionAr">Description Ar</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="descriptionEn"><span jhiTranslate="insuranceApplicationApp.insuranceSpecification.descriptionEn">Description En</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="insurenceObjectTypeId"><span jhiTranslate="insuranceApplicationApp.insuranceSpecification.insurenceObjectType">Insurence Object Type</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -35,6 +36,11 @@
                     <td>{{ insuranceSpecification.code }}</td>
                     <td>{{ insuranceSpecification.descriptionAr }}</td>
                     <td>{{ insuranceSpecification.descriptionEn }}</td>
+                    <td>
+                        <div *ngIf="insuranceSpecification.insurenceObjectTypeId">
+                            <a [routerLink]="['/insurance-object-type', insuranceSpecification.insurenceObjectTypeId , 'view']" >{{ insuranceSpecification.insurenceObjectTypeId }}</a>
+                        </div>
+                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

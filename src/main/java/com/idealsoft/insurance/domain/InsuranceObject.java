@@ -1,5 +1,6 @@
 package com.idealsoft.insurance.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -37,6 +38,11 @@ public class InsuranceObject extends AbstractAuditingEntity implements Serializa
     @OneToMany(mappedBy = "insuranceObject",fetch = FetchType.EAGER)
    // @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<InsuranceInstance> instances = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name="type_id")
+    @JsonIgnoreProperties("insuranceObjects")
+    private InsuranceObjectType type;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -109,6 +115,19 @@ public class InsuranceObject extends AbstractAuditingEntity implements Serializa
 
     public void setInstances(Set<InsuranceInstance> insuranceInstances) {
         this.instances = insuranceInstances;
+    }
+
+    public InsuranceObjectType getType() {
+        return type;
+    }
+
+    public InsuranceObject type(InsuranceObjectType insuranceObjectType) {
+        this.type = insuranceObjectType;
+        return this;
+    }
+
+    public void setType(InsuranceObjectType insuranceObjectType) {
+        this.type = insuranceObjectType;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

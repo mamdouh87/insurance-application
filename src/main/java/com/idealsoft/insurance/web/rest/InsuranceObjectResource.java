@@ -118,9 +118,9 @@ public class InsuranceObjectResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the insuranceObjectDTO, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/insurance-objects/byIdentification")
-    public ResponseEntity<InsuranceObjectDTO> getInsuranceObjectByIdentification(@RequestParam(value = "id1",required = false) String id1,@RequestParam(value = "id2",required = false) String id2,@RequestParam(value = "id3",required = false) String id3) {
+    public ResponseEntity<InsuranceObjectDTO> getInsuranceObjectByIdentification(@RequestParam(value = "id1") String id1,@RequestParam(value = "id2") String id2,@RequestParam(value = "id3") String id3,@RequestParam(value = "objectType") String objectType) {
         log.debug("REST request to get InsuranceObject : {} {} {}", id1,id2,id3);
-        Optional<InsuranceObjectDTO> insuranceObjectDTO = insuranceObjectService.findByIdentifications(id1,id2,id3);
+        Optional<InsuranceObjectDTO> insuranceObjectDTO = insuranceObjectService.findByIdentifications(id1,id2,id3,objectType);
         return ResponseUtil.wrapOrNotFound(insuranceObjectDTO);
     }
 

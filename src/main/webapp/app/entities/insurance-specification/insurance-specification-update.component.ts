@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 
 import { IInsuranceSpecification, InsuranceSpecification } from 'app/shared/model/insurance-specification.model';
 import { InsuranceSpecificationService } from './insurance-specification.service';
+import { IInsuranceObjectType } from 'app/shared/model/insurance-object-type.model';
+import { InsuranceObjectTypeService } from 'app/entities/insurance-object-type/insurance-object-type.service';
 
 @Component({
   selector: 'jhi-insurance-specification-update',
@@ -14,16 +16,19 @@ import { InsuranceSpecificationService } from './insurance-specification.service
 })
 export class InsuranceSpecificationUpdateComponent implements OnInit {
   isSaving = false;
+  insuranceobjecttypes: IInsuranceObjectType[] = [];
 
   editForm = this.fb.group({
     id: [],
     code: [],
     descriptionAr: [],
-    descriptionEn: []
+    descriptionEn: [],
+    insurenceObjectTypeId: []
   });
 
   constructor(
     protected insuranceSpecificationService: InsuranceSpecificationService,
+    protected insuranceObjectTypeService: InsuranceObjectTypeService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -31,6 +36,10 @@ export class InsuranceSpecificationUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ insuranceSpecification }) => {
       this.updateForm(insuranceSpecification);
+
+      this.insuranceObjectTypeService
+        .query()
+        .subscribe((res: HttpResponse<IInsuranceObjectType[]>) => (this.insuranceobjecttypes = res.body || []));
     });
   }
 
@@ -39,7 +48,8 @@ export class InsuranceSpecificationUpdateComponent implements OnInit {
       id: insuranceSpecification.id,
       code: insuranceSpecification.code,
       descriptionAr: insuranceSpecification.descriptionAr,
-      descriptionEn: insuranceSpecification.descriptionEn
+      descriptionEn: insuranceSpecification.descriptionEn,
+      insurenceObjectTypeId: insuranceSpecification.insurenceObjectTypeId
     });
   }
 
@@ -63,7 +73,8 @@ export class InsuranceSpecificationUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       code: this.editForm.get(['code'])!.value,
       descriptionAr: this.editForm.get(['descriptionAr'])!.value,
-      descriptionEn: this.editForm.get(['descriptionEn'])!.value
+      descriptionEn: this.editForm.get(['descriptionEn'])!.value,
+      insurenceObjectTypeId: this.editForm.get(['insurenceObjectTypeId'])!.value
     };
   }
 
@@ -81,5 +92,9 @@ export class InsuranceSpecificationUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
+  }
+
+  trackById(index: number, item: IInsuranceObjectType): any {
+    return item.id;
   }
 }

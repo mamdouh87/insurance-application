@@ -39,8 +39,20 @@ public class InsuranceInstance extends AbstractAuditingEntity implements Seriali
     private Set<InsuranceInstanceDetails> details = new HashSet<>();
 
     @ManyToOne
+    @JoinColumn(name="insurance_object_id")
     @JsonIgnoreProperties("instances")
     private InsuranceObject insuranceObject;
+
+    private Integer status;
+
+    public enum Status {
+        COMPLETED(new Integer(1)),
+        IN_COMPLETED(new Integer(0));
+
+        private Integer value;
+        Status(Integer value) {this.value = value;}
+        public Integer getValue() {return value;}
+    }
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -125,6 +137,14 @@ public class InsuranceInstance extends AbstractAuditingEntity implements Seriali
             return false;
         }
         return id != null && id.equals(((InsuranceInstance) o).id);
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     @Override

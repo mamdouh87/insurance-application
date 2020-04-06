@@ -110,6 +110,13 @@ public class InsuranceSpecificationResource {
         return ResponseUtil.wrapOrNotFound(insuranceSpecificationDTO);
     }
 
+    @GetMapping("/insurance-specifications/object-type-id/{id}")
+    public ResponseEntity<List<InsuranceSpecificationDTO>> getInsuranceSpecificationByObjectTypeId(@PathVariable Long id) {
+        log.debug("REST request to get InsuranceSpecification : {}", id);
+        List<InsuranceSpecificationDTO> insuranceSpecificationDTO = insuranceSpecificationService.getInsuranceSpecificationByObjectTypeId(id);
+        return ResponseEntity.ok().body((insuranceSpecificationDTO));
+    }
+
     /**
      * {@code DELETE  /insurance-specifications/:id} : delete the "id" insuranceSpecification.
      *

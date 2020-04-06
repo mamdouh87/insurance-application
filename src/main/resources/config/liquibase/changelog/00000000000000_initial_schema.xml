@@ -15,7 +15,7 @@
         The initial schema has the '00000000000001' id, so that it is over-written if we re-generate it.
     -->
     <changeSet id="00000000000001" author="jhipster">
-        <createTable tableName="jhi_user">
+<!--        <createTable tableName="jhi_user">
             <column name="id" type="bigint" >
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -77,7 +77,7 @@
 
         <addNotNullConstraint   columnName="password_hash"
                                 columnDataType="varchar(60)"
-                                tableName="jhi_user"/>
+                                tableName="jhi_user"/>-->
         <loadData
                   file="config/liquibase/data/user.csv"
                   separator=";"
@@ -100,7 +100,7 @@
                   tableName="jhi_user_authority">
             <column name="user_id" type="numeric"/>
         </loadData>
-        <createTable tableName="jhi_persistent_audit_event">
+  <!--      <createTable tableName="jhi_persistent_audit_event">
             <column name="event_id" type="bigint" >
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -140,8 +140,9 @@
                                  constraintName="fk_evt_pers_audit_evt_data"
                                  referencedColumnNames="event_id"
                                  referencedTableName="jhi_persistent_audit_event"/>
-    </changeSet>
 
+-->
+    </changeSet>
     <changeSet author="jhipster" id="00000000000002" context="test">
         <createTable tableName="jhi_date_time_wrapper">
             <column  name="id" type="BIGINT">
